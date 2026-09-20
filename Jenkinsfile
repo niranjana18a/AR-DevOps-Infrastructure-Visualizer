@@ -44,7 +44,7 @@ pipeline {
 
         stage('CI Success') {
             steps {
-                echo 'AR DevOps Infrastructure Visualizer CI pipeline completed successfully!'
+                echo 'AR DevOps Infrastructure Visualizer CI pipeline completed successfully - Build #2!'
             }
         }
     }
