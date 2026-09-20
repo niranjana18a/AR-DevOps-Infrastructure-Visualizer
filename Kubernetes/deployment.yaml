@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: ar-devops-backend
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: ar-devops-backend
+
+  template:
+    metadata:
+      labels:
+        app: ar-devops-backend
+
+    spec:
+      containers:
+        - name: backend
+          image: ar-devops-backend:1.0
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8000
