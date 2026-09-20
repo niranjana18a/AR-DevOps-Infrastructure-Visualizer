@@ -24,6 +24,9 @@ pipeline {
 
                 echo 'Installing backend dependencies...'
                 bat 'Backend\\venv\\Scripts\\python.exe -m pip install -r Backend\\requirements.txt'
+
+                echo 'Installing testing dependencies...'
+                bat 'Backend\\venv\\Scripts\\python.exe -m pip install pytest httpx'
             }
         }
 
@@ -42,9 +45,16 @@ pipeline {
             }
         }
 
+        stage('Automated API Tests') {
+            steps {
+                echo 'Running automated FastAPI API tests...'
+                bat 'cd Backend && venv\\Scripts\\python.exe -m pytest tests\\test_api.py -v'
+            }
+        }
+
         stage('CI Success') {
             steps {
-                echo 'AR DevOps Infrastructure Visualizer CI pipeline completed successfully - Build #2!'
+                echo 'AR DevOps Infrastructure Visualizer CI pipeline completed successfully!'
             }
         }
     }
