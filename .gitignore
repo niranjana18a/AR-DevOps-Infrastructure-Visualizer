@@ -60,3 +60,8 @@ docker-data/
 # =========================
 dist/
 build/
+
+# =========================
+# Kubernetes temporary images
+# =========================
+Kubernetes/*.tar

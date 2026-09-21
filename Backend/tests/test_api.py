@@ -76,3 +76,29 @@ def test_alerts():
     data = response.json()
 
     assert isinstance(data, list)
+
+def test_prometheus_monitoring():
+    response = client.get("/api/monitoring/prometheus")
+
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert data["source"] == "Prometheus"
+
+    assert "cpu" in data
+    assert "memory" in data
+    assert "network" in data
+    assert "disk" in data
+
+    if data["cpu"] is not None:
+        assert isinstance(data["cpu"], (int, float))
+
+    if data["memory"] is not None:
+        assert isinstance(data["memory"], (int, float))
+
+    if data["network"] is not None:
+        assert isinstance(data["network"], (int, float))
+
+    if data["disk"] is not None:
+        assert isinstance(data["disk"], (int, float))

@@ -19,8 +19,11 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ar-devops-backend:1.0
+          image: ar-devops-backend:1.5
           imagePullPolicy: Never
+          env:
+            - name: PROMETHEUS_URL
+              value: "http://host.docker.internal:9090"
 
           ports:
             - containerPort: 8000
